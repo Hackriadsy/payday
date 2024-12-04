@@ -1,1 +1,2 @@
-release: chmod +x ./setup.sh && ./setup.sh
+release: npm install
+web: npm run compile && npm start
