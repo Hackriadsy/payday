@@ -1,1 +1,2 @@
-web: npm install && npm run compile && npm start
+release: ./setup.sh
+web: npm start
