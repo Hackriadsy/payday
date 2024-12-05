@@ -1,0 +1,13 @@
+model Account {
+    id       Int     @id @default(autoincrement())
+    type     String  @default("individual")
+    googleId String  @unique @map("google_id")
+    name     String
+    avatar   String?
+    country  String? @default("NG")
+    phone    String
+
+    @@unique([phone, country])
+    @@index([googleId])
+    @@map("accounts")
+}
