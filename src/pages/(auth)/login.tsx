@@ -9,9 +9,9 @@ export default function Login() {
         alt="A small guy grasping a bag of money with all his might"
         className="hidden lg:block w-1/2 h-full object-cover"
       />
-      <section className="space-y-10 w-1/2 h-full px-4 py-8 flex flex-col justify-between">
+      <section className="space-y-10 w-full lg:w-1/2 h-full px-4 py-8 flex flex-col justify-between">
         <div className="flex items-center justify-center">
-          <Logo />
+          <Logo size={4} />
         </div>
         <div className="flex flex-col gap-16">
           <h1 className="text-4xl text-center">
