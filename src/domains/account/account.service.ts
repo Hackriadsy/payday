@@ -1,8 +1,9 @@
+import { CreateUserAccountDTO, UpdateUserAccountDTO } from "@/interfaces/dtos/account";
 import { AccountRepository } from "./account.repository";
 
 export const AccountService = {
-  async createAccount(accountData: Partial<any>) {
-    return await AccountRepository.create(accountData);
+  async createAccount(dto: CreateUserAccountDTO) {
+    return await AccountRepository.create(dto);
   },
 
   async getAccountById(id: number) {
@@ -17,8 +18,8 @@ export const AccountService = {
     return await AccountRepository.findAll();
   },
 
-  async updateAccount(id: number, updateData: Partial<any>) {
-    return await AccountRepository.update(id, updateData);
+  async updateAccount(id: number, dto: UpdateUserAccountDTO) {
+    return await AccountRepository.update(id, dto);
   },
 
   async deleteAccount(id: number) {

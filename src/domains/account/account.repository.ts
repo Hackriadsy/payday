@@ -1,10 +1,11 @@
+import { CreateUserAccountDTO, UpdateUserAccountDTO } from "@/interfaces/dtos/account";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export const AccountRepository = {
-  async create(accountData: Partial<any>) {
-    return await prisma.account.create({ data: accountData });
+  async create(dto: CreateUserAccountDTO) {
+    return await prisma.account.create({ data: dto });
   },
 
   async findById(id: number) {
@@ -15,10 +16,10 @@ export const AccountRepository = {
     return await prisma.account.findMany();
   },
 
-  async update(id: number, updateData: Partial<any>) {
+  async update(id: number, dto: UpdateUserAccountDTO) {
     return await prisma.account.update({
       where: { id },
-      data: updateData,
+      data: dto,
     });
   },
 

@@ -1,5 +1,5 @@
+import { AccountService } from "@/domains/account/account.service";
 import { Request, Response } from "express";
-import { AccountService } from "../controllers";
 
 export const AccountController = {
   async create(req: Request, res: Response) {
