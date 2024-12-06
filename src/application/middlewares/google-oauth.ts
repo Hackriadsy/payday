@@ -15,11 +15,37 @@ export default function setup(app: Express) {
         clientSecret: GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback',
         passReqToCallback: true,
+        scope: ['email', 'profile'],
       },
-      (request, accessToken, refreshToken, profile, done) => {
-        // TODO: Save user profile to database
-        return done(null, profile);
+      async (request, accessToken, refreshToken, profile, done) => {
+        try {
+          let user = await Account.findOne({ googleId: profile.id });
+  
+          if (!user) {
+            user = await Account.create({
+              googleId: profile.id,
+              name: profile.displayName,
+              avatar: profile.photos?.[0].value,
+            });
+          }
+          return done(null, user);
+        } catch (error) {
+          return done(error, null);
+        }
       },
     ),
   );
+
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await Account.findById(id);
+      done(null, user);
+    } catch (error) {
+      done(error, null);
+    }
+  });
 }
