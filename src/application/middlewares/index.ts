@@ -1,4 +1,4 @@
-// import router from '@/application/routes';
+import router from '@/application/routes';
 import compression from 'compression';
 import { Express } from 'express';
 import passport from 'passport';
@@ -14,7 +14,7 @@ export default function setup(app: Express) {
   setupParsing(app);
   setupErrorHandling(app);
 
-  // app.use('/api/v1', router);
+  app.use('/api/v1', router);
 
   // passport setup
   app.use(passport.initialize());
