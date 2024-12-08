@@ -72,11 +72,13 @@ const GlobalActivityFooter: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-slate-200 border-t p-3 text-xs text-secondary rounded-box mt-auto overflow-hidden">
+    <footer className="w-full bg-gradient-to-tr from-red-100 via-red-200 to-red-300 text-gray-900 border-t p-3 text-xs rounded-box mt-auto overflow-hidden border border-slate-300">
       <div className="max-w-7xl mx-auto flex flex-col items-start space-y-4">
         <div className="flex items-center badge badge-info badge-lg">
           <Users size={16} className="mr-2" />
-          <span>Active Users: <strong>254</strong></span>
+          <span>
+            Active Users: <strong>254</strong>
+          </span>
         </div>
         <div className="flex-grow flex flex-col items-start gap-2 overflow-y-auto max-h-28">
           {globalActivities.map((activity) => (

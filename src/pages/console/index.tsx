@@ -70,9 +70,9 @@ const payrollData: PayrollTransferMonthData[] = [
 export default function Analytics() {
   return (
     <div className="w-full h-full">
-      <h1 className="text-3xl font-bold text-slate-100">Analytics</h1>
+      <h1 className="text-3xl font-bold text-primary-content">Analytics</h1>
       <section className="h-full flex flex-col gap-8 my-10 items-center justify-between">
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
+        <div className="stats stats-vertical lg:stats-horizontal w-full border border-slate-300">
           <div className="stat bg-primary text-white">
             <div className="stat-title text-white">Total Payrolls</div>
             <div className="stat-value">22</div>

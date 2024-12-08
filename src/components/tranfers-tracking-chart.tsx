@@ -63,7 +63,7 @@ const PayrollTransferChart = ({ data }: PayrollTransferChartProps) => {
   ];
 
   return (
-    <div className="w-full h-[700px] bg-white text-primary-content rounded-lg py-2">
+    <div className="w-full h-[700px] bg-white text-primary-content rounded-lg py-2 border border-slate-300">
       <h2 className="text-lg font-extrabold uppercase text-center text-secondary">
         Most Recent Quarterly Expenses by Payroll
       </h2>

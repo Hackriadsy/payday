@@ -14,9 +14,8 @@ export default {
   ],
   daisyui: {
     themes: [
-      'wireframe',
-      'garden',
-      'lemonade',
+      'retro',
+      'autumn',
       'coffee',
     ]
   }

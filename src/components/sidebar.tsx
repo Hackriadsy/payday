@@ -24,7 +24,7 @@ export default function Sidebar({ items }: SidebarProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <ul className="h-max max-w-64 w-full bg-white shadow-md border border-primary text-primary menu hidden lg:menu-vertical rounded-box my-10 space-y-2">
+      <ul className="h-max max-w-64 w-full bg-white border border-slate-300 shadow-md text-primary menu hidden lg:menu-vertical rounded-box my-10 space-y-2">
         {items.map((item, index) => {
           const Icon = item.icon;
           return (
@@ -47,7 +47,7 @@ export default function Sidebar({ items }: SidebarProps) {
       </ul>
 
       {/* Mobile Navigation */}
-      <div className="btm-nav lg:hidden bg-white w-[95%] mx-auto my-5 px-3 rounded-md btm-nav-md z-50 shadow-lg border border-slate-200">
+      <div className="btm-nav lg:hidden bg-white w-[95%] mx-auto my-5 px-3 rounded-md btm-nav-md z-50 shadow-lg border border-secondary">
         {items.map((item, index) => {
           const Icon = item.icon;
           const isActive = isActiveRoute(location.pathname, item.url);
@@ -58,13 +58,13 @@ export default function Sidebar({ items }: SidebarProps) {
               className={clsx(
                 "w-full h-14 flex bg-transparent items-center justify-center",
                 isActive
-                  ? "active tooltip tooltip-primary border-primary text-primary border-t-4 font-extrabold py-2"
+                  ? "active tooltip tooltip-primary border-primary text-primary border-0 font-extrabold"
                   : "text-secondary"
               )}
               data-tip={item.name}
             >
               <Icon size={24} />
-              {!isActive && <span className="btm-nav-label">{item.name}</span>}
+              <span className="btm-nav-label">{item.name}</span>
             </a>
           );
         })}
