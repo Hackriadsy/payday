@@ -70,7 +70,7 @@ const payrollData: PayrollTransferMonthData[] = [
 export default function Analytics() {
   return (
     <div className="w-full h-full">
-      <h1 className="text-3xl font-bold text-primary-content">Analytics</h1>
+      <h1 className="text-3xl lg:text-4xl font-bold text-primary-content">Account Analytics</h1>
       <section className="h-full flex flex-col gap-8 my-10 items-center justify-between">
         <div className="stats stats-vertical lg:stats-horizontal w-full border border-slate-300">
           <div className="stat bg-primary text-white">

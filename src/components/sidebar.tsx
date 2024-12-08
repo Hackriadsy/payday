@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
-import { useLocation, matchPath } from "react-router-dom";
+import { useCallback } from "react";
+import { useLocation } from "react-router-dom";
 
 type SidebarProps = {
   items: {
@@ -11,15 +12,28 @@ type SidebarProps = {
   }[];
 };
 
-const isActiveRoute = (currentPath: string, routePattern: string): boolean => {
-  // Use react-router's matchPath for robust route matching
-  const match = matchPath({ path: routePattern, end: false }, currentPath);
-
-  return match !== null;
-};
-
 export default function Sidebar({ items }: SidebarProps) {
   const location = useLocation();
+
+  const isActiveRoute = useCallback(
+    (path: string): boolean => {
+      const currentPath = location.pathname;
+      if (currentPath === path) return true;
+      if (!currentPath.startsWith(path)) return false;
+
+      const sortedItems = items
+        .filter((item) => item.url !== path && currentPath.startsWith(item.url))
+        .sort((a, b) => b.url.length - a.url.length);
+
+      for (const item of sortedItems) {
+        if (currentPath === item.url) return false;
+        if (item.url.length > path.length) return false;
+      }
+
+      return currentPath.startsWith(path);
+    },
+    [items, location.pathname]
+  );
 
   return (
     <>
@@ -33,7 +47,7 @@ export default function Sidebar({ items }: SidebarProps) {
                 href={item.url}
                 className={clsx(
                   "text-lg tooltip flex items-center gap-2",
-                  isActiveRoute(location.pathname, item.url) && "active"
+                  isActiveRoute(item.url) && "active"
                 )}
                 data-tip={item.name}
               >
@@ -50,7 +64,7 @@ export default function Sidebar({ items }: SidebarProps) {
       <div className="btm-nav lg:hidden bg-white w-[95%] mx-auto my-5 px-3 rounded-md btm-nav-md z-50 shadow-lg border border-secondary">
         {items.map((item, index) => {
           const Icon = item.icon;
-          const isActive = isActiveRoute(location.pathname, item.url);
+          const isActive = isActiveRoute(item.url);
           return (
             <a
               href={item.url}
