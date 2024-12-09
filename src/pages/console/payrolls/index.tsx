@@ -1,6 +1,6 @@
+import { ItemHighlight } from "@app/components";
 import clsx from "clsx";
 import {
-  ArrowLeft,
   Binoculars,
   FileDown,
   PackagePlus,
@@ -10,16 +10,16 @@ import {
 import { useState } from "react";
 
 export default function Payrolls() {
-  const [revealActions, setRevealActions] = useState(false);
+  const [revealActions, setRevealActions] = useState(true);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full space-y-16">
       <div className="flex items-center justify-between gap-5">
-        <h1 className="text-3xl lg:text-4xl font-bold text-primary-content">
+        <h1 className="text-2xl lg:text-3xl font-bold text-primary-content">
           Your Payrolls
         </h1>
         {/* View mode */}
-        <div className="flex items-center gap-1 ml-auto">
+        <div className="flex items-center ml-auto">
           <div
             className={clsx(
               "flex items-center gap-2",
@@ -28,19 +28,19 @@ export default function Payrolls() {
           >
             <a
               href="/console/payrolls/beneficiaries"
-              className="btn btn-circle flex items-center justify-center btn-primary btn-md tooltip"
+              className="btn btn-circle flex items-center justify-center btn-primary btn-sm tooltip"
               data-tip="See Beneficiaries"
             >
-              <Binoculars size={24} className="text-white" />
+              <Binoculars size={20} className="text-white" />
             </a>
             <button
-              className="btn btn-circle flex items-center justify-center btn-primary btn-md tooltip"
+              className="btn btn-circle flex items-center justify-center btn-primary btn-sm tooltip"
               data-tip="Create Payroll"
             >
-              <PackagePlus size={24} className="text-white" />
+              <PackagePlus size={20} className="text-white" />
             </button>
             <button
-              className="btn btn-circle flex items-center justify-center btn-primary btn-md tooltip"
+              className="btn btn-circle flex items-center justify-center btn-primary btn-sm tooltip"
               data-tip="Export Payrolls"
             >
               <FileDown size={20} className="text-white" />
@@ -48,21 +48,25 @@ export default function Payrolls() {
           </div>
           <div
             className={clsx(
-              "divider divider-horizontal h-full mx-5",
+              "divider divider-horizontal h-8 mx-5",
               revealActions ? "visible" : "invisible"
             )}
-          >
-            <ArrowLeft size={24} className="text-secondary-content" />
-          </div>
+          ></div>
           <label className="swap text-secondary">
             <input
               type="checkbox"
               onChange={(e) => setRevealActions(e.target.checked)}
             />
-            <PanelRightOpen size={36} className="swap-on" />
-            <PanelRightClose size={36} className="swap-off" />
+            <PanelRightOpen size={24} className="swap-on" />
+            <PanelRightClose size={24} className="swap-off" />
           </label>
         </div>
+      </div>
+      <div className="flex flex-col gap-10">
+        <ItemHighlight
+          endpoint={import.meta.env.VITE_API_URL + "/payrolls?top-rated=true"}
+          errorText="Most rated payroll will be shown here, if available."
+        />
       </div>
     </div>
   );
