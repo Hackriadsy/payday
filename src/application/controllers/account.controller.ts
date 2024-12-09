@@ -14,6 +14,7 @@ export const AccountController = {
   async getById(req: Request, res: Response) {
     try {
       const id = parseInt(req.params.id);
+      //const id = req.params.id;
       const account = await AccountService.getAccountById(id);
       res.status(200).json(account);
     } catch (error: any) {
