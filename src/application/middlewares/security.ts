@@ -1,6 +1,7 @@
 import cors from 'cors';
 import { Express } from 'express';
 import rateLimit from 'express-rate-limit';
+import session from 'express-session';
 import helmet from 'helmet';
 
 export default function setup(app: Express) {
@@ -28,6 +29,13 @@ export default function setup(app: Express) {
       referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
     }),
   );
+ 
+    app.use(session({
+      secret: process.env.SESSION_SECRET!,
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: true }
+    }))
 
   // Rate Limiting
   const limiter = rateLimit({
