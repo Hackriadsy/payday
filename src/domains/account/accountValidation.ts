@@ -3,7 +3,7 @@ import { body } from "express-validator";
 export const createAccountValidation = [
   body("googleId").isString().withMessage("Google ID must be a string"),
   body("name").isString().withMessage("Name is required"),
-  body("phone").isString().withMessage("Phone number is required"),
+  body("phone").optional().isString(),
   body("type")
     .optional()
     .isString()
