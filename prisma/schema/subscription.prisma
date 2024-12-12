@@ -1,0 +1,33 @@
+model Subscription {
+  id              String   @id @default(cuid())
+  accountId       Int   // FK to Account model
+  plan            SubscriptionPlan  
+  startDate       DateTime @default(now())
+  endDate         DateTime // Calculated based on plan
+  status          SubscriptionStatus @default(ACTIVE)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  Account         Account     @relation(fields: [accountId], references: [id])
+
+   @@map("subscriptions")
+}
+
+
+// Enum for Subscription Plans
+enum SubscriptionPlan {
+  PayFree
+  PayFresh
+  PayCrech
+  PaySilver
+  PayClever
+  PayRiver
+}
+
+
+// Enum for Subscription Status
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  PENDING
+}

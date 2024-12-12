@@ -6,6 +6,7 @@ model Account {
     avatar   String?
     country  String? @default("NG")
     phone    String?
+    subscriptions Subscription[]
 
     @@index([googleId])
     @@map("accounts")
