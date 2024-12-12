@@ -6,15 +6,18 @@ export const AccountController = {
     try {
       const account = await AccountService.createAccount(req.body);
       res.status(201).json(account);
-    } catch (error: any) {
-      res.status(400).json({ message: error.message });
-    }
+    } catch (error: any)  {
+      console.error('Account creation error:', error)
+      res.status(500).json({
+            error: 'Failed to create account',
+            details: error instanceof Error ? error.message : 'Unknown error'
+          });
+  }
   },
 
   async getById(req: Request, res: Response) {
     try {
       const id = parseInt(req.params.id);
-      //const id = req.params.id;
       const account = await AccountService.getAccountById(id);
       res.status(200).json(account);
     } catch (error: any) {
